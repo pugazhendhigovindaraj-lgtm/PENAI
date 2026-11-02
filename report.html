@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Assessment Report | PentestAI</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<title>Assessment Report | PentestAI</title><link rel="stylesheet" href="{{ url_for(filename='style.css') }}"></head>
 <body><main class="wrap"><header><p class="eyebrow">ASSESSMENT #{{ item.id }}</p><h1>Security <span>Report</span></h1>
 <p class="sub">{{ item.target }} · {{ item.created_at }}</p></header>
 <section class="panel"><div class="reporthead"><h2>Findings</h2><a class="download" href="{{ url_for('download_report', assessment_id=item.id) }}">Download JSON report</a></div>
