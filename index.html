@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PentestAI | Lab Dashboard</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><main class="wrap">
+<header><p class="eyebrow">DATAOPS INNOVATION HACKATHON 2026</p><h1>Pentest<span>AI</span></h1>
+<p class="sub">Intelligent AI Agent for Automated Penetration Testing</p></header>
+<section class="panel"><h2>Start a lab assessment</h2>
+<p class="muted">This starter performs a small, non-destructive HTTP security-header check against loopback targets only.</p>
+<form method="post"><label for="target">Authorized local lab URL</label>
+<input id="target" name="target" placeholder="http://127.0.0.1:8000" required>
+<button type="submit">Run safe assessment</button></form>
+<div class="notice">Safety boundary: only localhost, 127.0.0.1 or ::1 are accepted. Do not test systems without explicit permission.</div>
+</section>
+{% with messages = get_flashed_messages(with_categories=true) %}{% for category,message in messages %}
+<div class="alert">{{ message }}</div>{% endfor %}{% endwith %}
+<section class="panel"><h2>Recent assessments</h2>{% if recent %}
+<ul class="recent">{% for item in recent %}<li><a href="{{ url_for('report', assessment_id=item.id) }}">#{{ item.id }} — {{ item.target }}</a><small>{{ item.created_at }} · {{ item.status }}</small></li>{% endfor %}</ul>
+{% else %}<p class="muted">No assessments yet. Start a local lab check above.</p>{% endif %}</section>
+<footer>PENTESTAI · AUTHORIZED SECURITY TESTING ONLY</footer></main></body></html>

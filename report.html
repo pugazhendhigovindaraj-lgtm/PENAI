@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assessment Report | PentestAI</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><main class="wrap"><header><p class="eyebrow">ASSESSMENT #{{ item.id }}</p><h1>Security <span>Report</span></h1>
+<p class="sub">{{ item.target }} · {{ item.created_at }}</p></header>
+<section class="panel"><div class="reporthead"><h2>Findings</h2><a class="download" href="{{ url_for('download_report', assessment_id=item.id) }}">Download JSON report</a></div>
+{% for f in findings %}<article class="finding"><div class="row"><h3>{{ f.title }}</h3><b class="severity {{ f.severity|lower }}">{{ f.severity }}</b></div>
+<p><strong>Confidence:</strong> {{ f.confidence }}</p><p><strong>Evidence:</strong> {{ f.evidence }}</p><p><strong>Recommendation:</strong> {{ f.recommendation }}</p></article>{% endfor %}
+<p class="notice">AI-assisted summaries and automated checks can be wrong or incomplete. A qualified human must validate every finding before acting on it.</p>
+<a href="{{ url_for('index') }}">← Back to dashboard</a></section><footer>PENTESTAI · AUTHORIZED SECURITY TESTING ONLY</footer></main></body></html>
